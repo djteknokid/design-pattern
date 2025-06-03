@@ -10,6 +10,4 @@ applications:
   env:
     NODE_ENV: production
     NPM_CONFIG_PRODUCTION: false
-  services: []
-  routes:
-    - route: design-pattern-app.cfapps.sap.hana.ondemand.com 
+  services: [] 
