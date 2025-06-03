@@ -2,9 +2,7 @@
 
 import {
   Popover,
-  List,
   Icon,
-  Title,
   FlexBox,
   FlexBoxDirection,
   FlexBoxAlignItems,
@@ -28,7 +26,7 @@ interface HamburgerMenuProps {
   opener?: string;
 }
 
-export default function HamburgerMenu({ isOpen, onClose, productName, menuItems, opener }: HamburgerMenuProps) {
+export default function HamburgerMenu({ isOpen, onClose, productName: _productName, menuItems, opener }: HamburgerMenuProps) {
   const [expandedSections, setExpandedSections] = useState<Set<number>>(new Set());
 
   const handleItemClick = (link?: string) => {

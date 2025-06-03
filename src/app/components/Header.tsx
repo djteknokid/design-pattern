@@ -18,6 +18,7 @@ export default function Header({ onProductSwitcherClick }: HeaderProps) {
   const [showProductSwitcher, setShowProductSwitcher] = useState(false);
   const [productSwitcherAnchor, setProductSwitcherAnchor] = useState<ShellBarDomRef | null>(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleProductSwitcherClick = (event: any) => {
     const shellBar = event.target;
     const productSwitchButton = shellBar.shadowRoot?.querySelector('ui5-button[data-ui5-stable="product-switch"]');

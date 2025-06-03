@@ -24,7 +24,7 @@ export default function ConcurPage() {
             <FlexBox direction={FlexBoxDirection.Column} style={{ gap: '1rem' }}>
               <Title level="H2">SAP Concur</Title>
               <Text>
-                SAP Concur is the world's leading provider of integrated travel, expense, and invoice management solutions. 
+                SAP Concur is the world&apos;s leading provider of integrated travel, expense, and invoice management solutions. 
                 Drive efficiency and compliance while gaining complete visibility into business spend.
               </Text>
               

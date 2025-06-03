@@ -4,11 +4,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import {
   Popover,
-  Icon,
-  FlexBox,
-  FlexBoxDirection,
-  FlexBoxAlignItems,
-  Title,
 } from "@ui5/webcomponents-react";
 import "@ui5/webcomponents-icons/dist/AllIcons.js";
 import "./appdropdownmenu.css";

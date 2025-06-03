@@ -1,11 +1,17 @@
 "use client";
 
+import Image from "next/image";
 import {
-  Card,
+  Title,
+  Text,
+  Button,
   FlexBox,
   FlexBoxDirection,
+  FlexBoxJustifyContent,
+  FlexBoxAlignItems,
+  Icon,
   ThemeProvider,
-  Link,
+  Link
 } from "@ui5/webcomponents-react";
 import "@ui5/webcomponents-icons/dist/AllIcons.js";
 import Header from "./components/Header";
