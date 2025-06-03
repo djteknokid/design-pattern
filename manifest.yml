@@ -7,7 +7,7 @@ applications:
   buildpacks:
     - nodejs_buildpack
   stack: cflinuxfs4
-  command: npm run build && npm start
+  command: npm start
   env:
     NODE_ENV: production
     NPM_CONFIG_PRODUCTION: false
