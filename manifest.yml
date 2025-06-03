@@ -1,0 +1,15 @@
+---
+applications:
+- name: design-pattern-app
+  memory: 1024M
+  disk_quota: 1024M
+  instances: 1
+  buildpacks:
+    - nodejs_buildpack
+  stack: cflinuxfs4
+  env:
+    NODE_ENV: production
+    NPM_CONFIG_PRODUCTION: false
+  services: []
+  routes:
+    - route: design-pattern-app.cfapps.sap.hana.ondemand.com 
