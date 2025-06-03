@@ -2,7 +2,7 @@
 applications:
 - name: design-pattern-app
   memory: 1024M
-  disk_quota: 1024M
+  disk_quota: 2048M
   instances: 1
   buildpacks:
     - nodejs_buildpack
@@ -11,4 +11,6 @@ applications:
   env:
     NODE_ENV: production
     NPM_CONFIG_PRODUCTION: false
+    NEXT_TELEMETRY_DISABLED: 1
+    WEBPACK_CACHE: false
   services: [] 
