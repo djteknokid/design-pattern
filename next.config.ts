@@ -11,10 +11,6 @@ const nextConfig: NextConfig = {
     }
     return config;
   },
-  // Optimize builds for Cloud Foundry
-  experimental: {
-    optimizeCss: true,
-  },
   // Reduce build output
   output: 'standalone',
   compress: true,
