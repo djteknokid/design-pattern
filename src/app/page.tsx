@@ -34,7 +34,14 @@ export default function Home() {
           <div className="relative w-full px-8 py-12">
             {/* Greeting */}
             <div className="mb-8">
-              <h2 className="text-xl text-gray-600 font-normal">Hello, Jordan</h2>
+              <h2 style={{
+                color: 'var(--sapTile_TextColor)',
+                fontFamily: 'var(--Font-Family-sapFontFamily, 72)',
+                fontSize: '24px',
+                fontStyle: 'normal',
+                fontWeight: '700',
+                lineHeight: 'normal'
+              }}>Hello, Jordan</h2>
             </div>
             
             {/* Main Content */}
@@ -42,12 +49,26 @@ export default function Home() {
               {/* Left Column - Text Content */}
               <div className="space-y-6">
                 <div className="border-l-4 border-blue-600 pl-6">
-                  <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+                  <h1 style={{
+                    color: '#364A5E',
+                    fontFamily: 'var(--Font-Family-sapFontFamily, 72)',
+                    fontSize: '98px',
+                    fontStyle: 'normal',
+                    fontWeight: '700',
+                    lineHeight: 'normal'
+                  }}>
                     Welcome to SAP Business Suite
                   </h1>
                 </div>
                 
-                <p className="text-xl text-gray-600 max-w-lg">
+                <p style={{
+                  color: 'var(--sapTile_TextColor)',
+                  fontFamily: 'var(--Font-Family-sapFontFamily, 72)',
+                  fontSize: '28px',
+                  fontStyle: 'normal',
+                  fontWeight: '400',
+                  lineHeight: '150%'
+                }}>
                   One Suite. Applications, Data and AI at your fingertips.
                 </p>
               </div>
@@ -60,7 +81,15 @@ export default function Home() {
             
             {/* Your Products Section */}
             <div className="mt-16">
-              <h3 className="text-lg font-semibold text-gray-800 mb-6">Your products</h3>
+              <h3 style={{
+                color: 'var(--Text-sapTitleColor, #1D2D3E)',
+                fontFamily: '72',
+                fontSize: '20px',
+                fontStyle: 'normal',
+                fontWeight: '700',
+                lineHeight: 'normal',
+                marginBottom: '1.5rem'
+              }}>Your products</h3>
               
               <div style={{ 
                 display: 'flex', 

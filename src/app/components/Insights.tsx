@@ -15,8 +15,16 @@ import "@ui5/webcomponents-icons/dist/AllIcons.js";
 
 export default function Insights() {
   return (
-    <FlexBox direction={FlexBoxDirection.Column}>
-      <Title level="H2" style={{ marginBottom: '1.5rem' }}>Insights</Title>
+    <FlexBox direction={FlexBoxDirection.Column} style={{ marginBottom: '3rem' }}>
+      <Title level="H2" style={{ 
+        color: 'var(--Text-sapTitleColor, #1D2D3E)',
+        fontFamily: '72',
+        fontSize: '20px',
+        fontStyle: 'normal',
+        fontWeight: '700',
+        lineHeight: 'normal',
+        marginBottom: '1.5rem' 
+      }}>Insights</Title>
       
       <FlexBox wrap={FlexBoxWrap.Wrap} justifyContent={FlexBoxJustifyContent.Start} style={{ gap: '1.5rem' }}>
         {/* Travel Expenses */}
