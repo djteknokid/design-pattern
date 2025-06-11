@@ -63,7 +63,7 @@ export default function AppDropdown({ isOpen, onClose, opener }: AppDropdownProp
     { 
       name: "Business Suite", 
       iconPath: "/appIcon-home.png", 
-      link: "/"
+      link: "/suite-first"
     },
   ];
 

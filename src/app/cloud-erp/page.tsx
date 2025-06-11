@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   ThemeProvider,
   Title,
@@ -10,12 +11,23 @@ import {
 } from "@ui5/webcomponents-react";
 import "@ui5/webcomponents-icons/dist/AllIcons.js";
 import ProductHeader from "../components/ProductHeader";
+import { JouleComponent } from "../components/Joule";
 
 export default function CloudERPPage() {
+  const [isJouleOpen, setIsJouleOpen] = useState(false);
+
+  const handleJouleToggle = () => {
+    setIsJouleOpen(!isJouleOpen);
+  };
+
+  const handleJouleClose = () => {
+    setIsJouleOpen(false);
+  };
+
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-gray-100">
-        <ProductHeader productName="Cloud ERP" />
+        <ProductHeader productName="Cloud ERP" onJouleClick={handleJouleToggle} />
         
         <FlexBox direction={FlexBoxDirection.Column} style={{ padding: '2rem' }}>
           <Title level="H1" style={{ marginBottom: '2rem' }}>Cloud ERP</Title>
@@ -48,6 +60,16 @@ export default function CloudERPPage() {
             </FlexBox>
           </Card>
         </FlexBox>
+
+        {/* Joule Component */}
+        {isJouleOpen && (
+          <JouleComponent
+            userName="ERP User"
+            onClose={handleJouleClose}
+            position={{ bottom: 20, right: 20 }}
+            initialView="welcome"
+          />
+        )}
       </div>
     </ThemeProvider>
   );

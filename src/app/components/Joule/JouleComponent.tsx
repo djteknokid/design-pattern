@@ -1,0 +1,434 @@
+"use client";
+
+import React, { useState, useRef, useEffect } from 'react';
+import WelcomeScreen from './WelcomeScreen/WelcomeScreen';
+import { GoBackHeader } from './Headers';
+import ChatBubble from './Chat/ChatBubble';
+import MessageInput from './Input/MessageInput';
+
+/**
+ * JouleComponent - Complete Joule experience with welcome screen and AI chat
+ * 
+ * @description This component provides the complete Joule experience, starting with 
+ * a welcome screen and transitioning to an AI chat interface. It manages the state 
+ * between the two views and provides a seamless user experience.
+ * 
+ * @usage Use this component for:
+ * - Complete Joule integration in applications
+ * - AI assistant feature with onboarding
+ * - Reusable Joule widget
+ * 
+ * @example
+ * ```tsx
+ * import { JouleComponent } from '@/components/Joule';
+ * 
+ * <JouleComponent
+ *   userName="John"
+ *   onClose={() => console.log('Joule closed')}
+ *   position={{ bottom: 20, right: 20 }}
+ * />
+ * ```
+ */
+
+interface Message {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: Date;
+}
+
+interface JouleComponentProps {
+  userName?: string;
+  onClose?: () => void;
+  position?: {
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+  };
+  showPosition?: boolean;
+  initialView?: 'welcome' | 'chat';
+}
+
+const JouleComponent: React.FC<JouleComponentProps> = ({
+  userName = "User",
+  onClose,
+  position = { bottom: 20, right: 20 },
+  showPosition = true,
+  initialView = 'welcome'
+}) => {
+  const [currentView, setCurrentView] = useState<'welcome' | 'chat'>(initialView);
+  const [isVisible, setIsVisible] = useState(true);
+  
+  // Chat state
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: '1',
+      role: 'assistant',
+      content: `Hello ${userName}! I'm Joule, your SAP AI assistant. How can I help you today?`,
+      timestamp: new Date()
+    }
+  ]);
+  const [conversation, setConversation] = useState<Array<{role: string, content: string}>>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const handleSendMessage = async (message: string) => {
+    if (!message.trim() || isLoading) return;
+
+    // Add user message immediately
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      role: 'user',
+      content: message.trim(),
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      // Call our API endpoint
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: message.trim(),
+          conversation: conversation
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get AI response');
+      }
+
+      const data = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      // Add AI response
+      const aiMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: data.message,
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, aiMessage]);
+      setConversation(data.conversation);
+
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setError('Sorry, I couldn\'t process your message. Please try again.');
+      
+      // Add error message
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: 'Sorry, I couldn\'t process your message. Please try again.',
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleWelcomeMessage = (message: string) => {
+    // When user sends a message from welcome screen, switch to chat and send message
+    setCurrentView('chat');
+    if (message.trim()) {
+      handleSendMessage(message);
+    }
+  };
+
+  const handleMenuClick = () => {
+    // Menu click can toggle between views or handle navigation
+    console.log('Menu clicked in Joule');
+  };
+
+  const handleFullscreenClick = () => {
+    console.log('Fullscreen clicked in Joule');
+  };
+
+  const handleDeclineClick = () => {
+    if (onClose) {
+      onClose();
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  const handleBackClick = () => {
+    // Go back to welcome screen from chat
+    setCurrentView('welcome');
+  };
+
+  const containerStyle: React.CSSProperties = {
+    position: showPosition ? 'fixed' : 'relative',
+    zIndex: 1000,
+    display: isVisible ? 'block' : 'none',
+    ...(showPosition && position)
+  };
+
+  if (!isVisible) {
+    return null;
+  }
+
+  return (
+    <div style={containerStyle}>
+      {currentView === 'welcome' ? (
+        <WelcomeScreen
+          userName={userName}
+          onMenuClick={handleMenuClick}
+          onFullscreenClick={handleFullscreenClick}
+          onDeclineClick={handleDeclineClick}
+          onSend={handleWelcomeMessage}
+          starterCapabilities={[
+            { 
+              id: '1', 
+              text: 'Help me with my tasks', 
+              onClick: () => {
+                setCurrentView('chat');
+              }
+            },
+            { 
+              id: '2', 
+              text: 'Show my calendar', 
+              onClick: () => {
+                setCurrentView('chat');
+              }
+            },
+            { 
+              id: '3', 
+              text: 'Find documents', 
+              onClick: () => {
+                setCurrentView('chat');
+              }
+            },
+            { 
+              id: '4', 
+              text: 'Team updates', 
+              onClick: () => {
+                setCurrentView('chat');
+              }
+            }
+          ]}
+          placeholder="Message Joule..."
+        />
+      ) : (
+        <div style={{
+          width: 416,
+          height: 742,
+          minWidth: 416,
+          background: 'white',
+          boxShadow: '0px 32px 64px rgba(91, 115, 139, 0.16)',
+          borderRadius: 16,
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+          alignItems: 'flex-start',
+          display: 'flex',
+          overflow: 'hidden'
+        }}>
+          {/* Use GoBackHeader for chat view */}
+          <GoBackHeader
+            onBackClick={handleBackClick}
+            onFullscreenClick={handleFullscreenClick}
+            onDeclineClick={handleDeclineClick}
+          />
+          
+          {/* Chat Messages Area */}
+          <div style={{
+            width: '100%',
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            display: 'flex',
+            overflow: 'hidden'
+          }}>
+            <div style={{
+              width: '100%',
+              flex: 1,
+              maxWidth: 1200,
+              minWidth: 416,
+              paddingTop: 16,
+              paddingBottom: 16,
+              paddingLeft: 16,
+              paddingRight: 16,
+              overflow: 'auto',
+              flexDirection: 'column',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              gap: 16,
+              display: 'flex'
+            }}>
+              {/* Welcome message */}
+              <div style={{
+                alignSelf: 'stretch',
+                textAlign: 'center',
+                color: '#556B82',
+                fontSize: 14,
+                fontFamily: '72',
+                fontWeight: '400',
+                lineHeight: '20px',
+                wordWrap: 'break-word',
+                marginBottom: 8
+              }}>
+                Chat with Joule AI Assistant
+              </div>
+
+              {/* Messages */}
+              {messages.map((message) => (
+                <ChatBubble
+                  key={message.id}
+                  type={message.role}
+                  message={message.content}
+                />
+              ))}
+
+              {/* Loading indicator */}
+              {isLoading && (
+                <div style={{
+                  alignSelf: 'flex-start',
+                  maxWidth: 384,
+                  paddingLeft: 16,
+                  paddingRight: 16,
+                  paddingTop: 12,
+                  paddingBottom: 12,
+                  background: '#EFF1F2',
+                  borderRadius: 16,
+                  borderTopLeftRadius: 4,
+                  justifyContent: 'flex-start',
+                  alignItems: 'center',
+                  gap: 8,
+                  display: 'flex'
+                }}>
+                  <div style={{
+                    color: '#556B82',
+                    fontSize: 14,
+                    fontFamily: '72',
+                    fontWeight: '400',
+                    lineHeight: '20px',
+                    fontStyle: 'italic'
+                  }}>
+                    Joule is typing...
+                  </div>
+                  <div style={{
+                    display: 'flex',
+                    gap: 4
+                  }}>
+                    <div style={{
+                      width: 4,
+                      height: 4,
+                      background: '#556B82',
+                      borderRadius: '50%',
+                      animation: 'bounce 1.4s infinite ease-in-out'
+                    }} />
+                    <div style={{
+                      width: 4,
+                      height: 4,
+                      background: '#556B82',
+                      borderRadius: '50%',
+                      animation: 'bounce 1.4s infinite ease-in-out 0.16s'
+                    }} />
+                    <div style={{
+                      width: 4,
+                      height: 4,
+                      background: '#556B82',
+                      borderRadius: '50%',
+                      animation: 'bounce 1.4s infinite ease-in-out 0.32s'
+                    }} />
+                  </div>
+                </div>
+              )}
+
+              {/* Error message */}
+              {error && (
+                <div style={{
+                  alignSelf: 'stretch',
+                  padding: 12,
+                  background: '#FFE6E6',
+                  borderRadius: 8,
+                  border: '1px solid #FF4444',
+                  textAlign: 'center',
+                  color: '#CC0000',
+                  fontSize: 14,
+                  fontFamily: '72',
+                  fontWeight: '400'
+                }}>
+                  {error}
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
+            </div>
+          </div>
+
+          {/* Input Area */}
+          <div style={{
+            width: '100%',
+            padding: 16,
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            gap: 8,
+            display: 'flex'
+          }}>
+            <div style={{
+              width: '100%',
+              maxWidth: 384
+            }}>
+              <MessageInput
+                placeholder="Message Joule..."
+                onSend={handleSendMessage}
+                disabled={isLoading}
+              />
+            </div>
+
+            {/* Footer disclaimer */}
+            <div style={{
+              textAlign: 'center',
+              color: '#32363A',
+              fontSize: 11,
+              fontFamily: '72',
+              fontWeight: '400',
+              lineHeight: '12px',
+              wordWrap: 'break-word'
+            }}>
+              Joule uses AI, verify results.
+            </div>
+          </div>
+
+          {/* CSS for typing animation */}
+          <style jsx>{`
+            @keyframes bounce {
+              0%, 80%, 100% {
+                transform: scale(0);
+              }
+              40% {
+                transform: scale(1);
+              }
+            }
+          `}</style>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default JouleComponent; 

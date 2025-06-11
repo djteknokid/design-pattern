@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   ThemeProvider,
   Title,
@@ -10,12 +11,23 @@ import {
 } from "@ui5/webcomponents-react";
 import "@ui5/webcomponents-icons/dist/AllIcons.js";
 import ProductHeader from "../components/ProductHeader";
+import { JouleComponent } from "../components/Joule";
 
 export default function AribaPage() {
+  const [isJouleOpen, setIsJouleOpen] = useState(false);
+
+  const handleJouleToggle = () => {
+    setIsJouleOpen(!isJouleOpen);
+  };
+
+  const handleJouleClose = () => {
+    setIsJouleOpen(false);
+  };
+
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-gray-100">
-        <ProductHeader productName="Ariba" />
+        <ProductHeader productName="Ariba" onJouleClick={handleJouleToggle} />
         
         <FlexBox direction={FlexBoxDirection.Column} style={{ padding: '2rem' }}>
           <Title level="H1" style={{ marginBottom: '2rem' }}>Ariba</Title>
@@ -24,31 +36,41 @@ export default function AribaPage() {
             <FlexBox direction={FlexBoxDirection.Column} style={{ gap: '1rem' }}>
               <Title level="H2">SAP Ariba</Title>
               <Text>
-                SAP Ariba is the world's largest business commerce network, connecting buyers and suppliers 
-                to enable efficient procurement processes and drive business value through spend management.
+                SAP Ariba is a comprehensive procurement and supply chain solution that connects buyers and suppliers 
+                through the world's largest business commerce network.
               </Text>
               
-              <Title level="H3" style={{ marginTop: '1rem' }}>Core Solutions:</Title>
+              <Title level="H3" style={{ marginTop: '1rem' }}>Key Features:</Title>
               <ul style={{ marginLeft: '1rem' }}>
-                <li>Ariba Buying - Procurement and purchasing</li>
-                <li>Ariba Sourcing - Strategic sourcing and supplier management</li>
-                <li>Ariba Contracts - Contract lifecycle management</li>
-                <li>Ariba Supplier Management - Supplier information and performance</li>
-                <li>Ariba Network - B2B commerce platform</li>
+                <li>Procurement and sourcing</li>
+                <li>Supplier management</li>
+                <li>Contract management</li>
+                <li>Supply chain collaboration</li>
+                <li>Spend analysis and insights</li>
+                <li>Risk management</li>
               </ul>
             </FlexBox>
           </Card>
           
           <Card style={{ padding: '2rem' }}>
             <FlexBox direction={FlexBoxDirection.Column} style={{ gap: '1rem' }}>
-              <Title level="H3">Procurement Excellence</Title>
+              <Title level="H3">Benefits</Title>
               <Text>
-                Optimize your procurement processes, reduce costs, mitigate risks, and collaborate effectively 
-                with suppliers across the global Ariba Network.
+                Optimize your procurement processes, reduce costs, and manage supplier relationships more effectively.
               </Text>
             </FlexBox>
           </Card>
         </FlexBox>
+
+        {/* Joule Component */}
+        {isJouleOpen && (
+          <JouleComponent
+            userName="Procurement Manager"
+            onClose={handleJouleClose}
+            position={{ bottom: 20, right: 20 }}
+            initialView="welcome"
+          />
+        )}
       </div>
     </ThemeProvider>
   );
