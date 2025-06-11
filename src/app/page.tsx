@@ -4,340 +4,503 @@ import React from 'react';
 import Link from 'next/link';
 
 const Homepage: React.FC = () => {
-  const designSystems = [
-    {
-      id: 'suite-first',
-      title: 'Suite First',
-      subtitle: 'Current Production System',
-      description: 'Our current suite of design components and patterns used in production applications. Features enterprise-grade components built for SAP business applications.',
-      icon: '🏢',
-      status: 'Production Ready',
-      statusColor: '#0F7B0F',
-      backgroundColor: 'linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%)',
-      borderColor: '#2196F3',
-      features: [
-        'Production-tested components',
-        'Enterprise application patterns',
-        'Consistent business workflows',
-        'Scalable architecture',
-        'Performance optimized'
-      ],
-      path: '/suite-first',
-      comingSoon: false
-    },
-    {
-      id: 'joule-design',
-      title: 'Joule Design Guide',
-      subtitle: 'AI Assistant Components',
-      description: 'Next-generation design system for SAP Joule AI Assistant. Features conversational UI components, intelligent interactions, and modern design patterns.',
-      icon: '🤖',
-      status: 'In Development',
-      statusColor: '#5D36FF',
-      backgroundColor: 'linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%)',
-      borderColor: '#5D36FF',
-      features: [
-        'AI-first component library',
-        'Conversational interfaces',
-        'Interactive message types',
-        'Smart quick replies',
-        'Modern design language'
-      ],
-      path: '/joule-library',
-      comingSoon: false
-    },
-    {
-      id: 'ui5-design',
-      title: 'UI5 SAP Design System',
-      subtitle: 'Legacy Foundation',
-      description: 'Traditional SAP design system based on UI5 framework. Comprehensive component library with established patterns and enterprise-grade functionality.',
-      icon: '🎨',
-      status: 'Stable',
-      statusColor: '#FF6B35',
-      backgroundColor: 'linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)',
-      borderColor: '#FF9800',
-      features: [
-        'Comprehensive component set',
-        'Established design patterns',
-        'Cross-platform compatibility',
-        'Accessibility compliant',
-        'Extensive documentation'
-      ],
-      path: '/ui5-design',
-      comingSoon: false
-    }
-  ];
-
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      padding: '40px 20px'
-    }}>
-      {/* Hero Section */}
-      <div style={{
+    <div style={{ minHeight: '100vh', background: 'white' }}>
+      {/* Hero Section - SAP VIBES */}
+      <section style={{
+        background: 'linear-gradient(135deg, #0070F2 0%, #5D36FF 100%)',
+        padding: '100px 20px',
         textAlign: 'center',
-        marginBottom: 60,
-        color: 'white'
+        color: 'white',
+        position: 'relative',
+        overflow: 'hidden'
       }}>
-        <h1 style={{
-          fontSize: 48,
-          fontWeight: '700',
-          fontFamily: '72',
-          margin: '0 0 16px 0',
-          textShadow: '0 2px 10px rgba(0,0,0,0.3)'
-        }}>
-          Prototype in SAP
-        </h1>
-        <p style={{
-          fontSize: 20,
-          fontFamily: '72',
-          margin: 0,
-          opacity: 0.9,
-          maxWidth: 600,
-          marginLeft: 'auto',
-          marginRight: 'auto'
-        }}>
-          Explore our collection of design systems, from current production solutions to next-generation AI interfaces
-        </p>
+        {/* Background Pattern */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          opacity: 0.1,
+          backgroundImage: 'radial-gradient(circle at 20% 80%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)',
+          backgroundSize: '100px 100px'
+        }} />
         
-        {/* GitHub CTA */}
-        <div style={{ marginTop: 32 }}>
-          <a 
-            href="https://github.com/yourusername/design-pattern" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            style={{ textDecoration: 'none' }}
-          >
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              padding: '12px 24px',
-              background: 'rgba(255,255,255,0.2)',
-              border: '2px solid rgba(255,255,255,0.3)',
-              borderRadius: 8,
-              color: 'white',
-              fontSize: 16,
-              fontFamily: '72',
-              fontWeight: '600',
-              transition: 'all 0.3s ease',
-              cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.3)';
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.5)';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.2)';
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
-              e.currentTarget.style.transform = 'translateY(0px)';
-            }}
-            >
-              <span style={{ fontSize: 20 }}>⭐</span>
-              View on GitHub
-            </div>
-          </a>
-        </div>
-      </div>
+        <div style={{ maxWidth: '1000px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          <h1 style={{
+            fontSize: '4rem',
+            fontWeight: '800',
+            fontFamily: '72',
+            margin: '0 0 24px 0',
+            lineHeight: '1.1',
+            background: 'linear-gradient(135deg, #ffffff 0%, #e8f4fd 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
+          }}>
+            SAP Prototype Library
+          </h1>
+          
+          <p style={{
+            fontSize: '1.5rem',
+            fontFamily: '72',
+            margin: '0 0 16px 0',
+            fontWeight: '600',
+            opacity: 0.95
+          }}>
+            Build AI prototype on SAP products with SAP design library
+          </p>
+          
+          <p style={{
+            fontSize: '1.125rem',
+            fontFamily: '72',
+            margin: '0 0 48px 0',
+            opacity: 0.9,
+            lineHeight: '1.6',
+            maxWidth: '800px',
+            marginLeft: 'auto',
+            marginRight: 'auto'
+          }}>
+            A comprehensive toolkit that empowers SAP designers to rapidly build and test prototypes. 
+            Pre-built components, AI patterns, and enterprise workflows ready to copy, customize, and deploy. 
+            Stop reinventing the wheel—focus on innovation and user experience instead.
+          </p>
 
-      {/* Design Systems Grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
-        gap: 32,
-        maxWidth: 1200,
-        margin: '0 auto'
+          <div style={{
+            display: 'flex',
+            gap: '24px',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            marginBottom: '60px'
+          }}>
+                         <Link href="/suite-first" style={{ textDecoration: 'none' }}>
+               <button style={{
+                 background: 'rgba(255, 255, 255, 0.2)',
+                 color: 'white',
+                 border: '2px solid rgba(255, 255, 255, 0.3)',
+                 backdropFilter: 'blur(10px)',
+                 padding: '16px 32px',
+                 borderRadius: '12px',
+                 fontSize: '18px',
+                 fontWeight: '700',
+                 fontFamily: '72',
+                 cursor: 'pointer',
+                 display: 'flex',
+                 alignItems: 'center',
+                 gap: '10px',
+                 transition: 'all 0.3s ease'
+               }}>
+                 <span>🚀</span> Launch Suite First Prototype
+               </button>
+             </Link>
+            <a 
+              href="https://github.com/djteknokid/design-pattern" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'none' }}
+            >
+              <button style={{
+                background: 'white',
+                color: '#0070F2',
+                border: '2px solid white',
+                padding: '16px 32px',
+                borderRadius: '12px',
+                fontSize: '18px',
+                fontWeight: '700',
+                fontFamily: '72',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                transition: 'all 0.3s ease'
+              }}>
+                <span>📦</span> View Source Code
+              </button>
+            </a>
+                    </div>
+        </div>
+      </section>
+
+      {/* Design Libraries Section */}
+      <section style={{
+        background: '#f8f9fa',
+        padding: '100px 20px'
       }}>
-        {designSystems.map((system) => (
-          <div
-            key={system.id}
-            style={{
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            gap: '30px'
+          }}>
+            {/* Suite First Demo Card */}
+            <div style={{
               background: 'white',
-              borderRadius: 16,
-              padding: 32,
-              boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
-              border: `2px solid ${system.borderColor}`,
+              borderRadius: '20px',
+              padding: '40px',
+              boxShadow: '0 10px 40px rgba(15, 123, 15, 0.1)',
+              border: '1px solid rgba(15, 123, 15, 0.1)',
               position: 'relative',
               overflow: 'hidden',
-              transition: 'all 0.3s ease',
-              cursor: system.comingSoon ? 'default' : 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              if (!system.comingSoon) {
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.16)';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!system.comingSoon) {
-                e.currentTarget.style.transform = 'translateY(0px)';
-                e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.12)';
-              }
-            }}
-          >
-            {/* Background Pattern */}
-            <div style={{
-              position: 'absolute',
-              top: 0,
-              right: 0,
-              width: 120,
-              height: 120,
-              background: system.backgroundColor,
-              borderRadius: '50%',
-              transform: 'translate(40px, -40px)',
-              opacity: 0.6
-            }} />
-
-            {/* Content */}
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              {/* Header */}
-              <div style={{ marginBottom: 24 }}>
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%'
+            }}>
+              {/* Background Accent */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                width: '100px',
+                height: '100px',
+                background: 'linear-gradient(135deg, #0F7B0F, #4CAF50)',
+                borderRadius: '0 20px 0 100px',
+                opacity: 0.1
+              }} />
+              
+              <div style={{ 
+                position: 'relative', 
+                zIndex: 1, 
+                display: 'flex', 
+                flexDirection: 'column', 
+                height: '100%' 
+              }}>
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: 12,
-                  marginBottom: 8
+                  gap: '12px',
+                  marginBottom: '24px'
                 }}>
-                  <span style={{ fontSize: 32 }}>{system.icon}</span>
+                  <div style={{
+                    fontSize: '2.5rem'
+                  }}>🏢</div>
                   <div>
-                    <h2 style={{
-                      fontSize: 24,
+                    <h3 style={{
+                      fontSize: '1.5rem',
                       fontWeight: '700',
                       fontFamily: '72',
-                      margin: 0,
+                      margin: '0 0 4px 0',
                       color: '#1B2A3A'
                     }}>
-                      {system.title}
-                    </h2>
+                      Suite First Demo
+                    </h3>
                     <p style={{
-                      fontSize: 14,
+                      fontSize: '1rem',
+                      color: '#0F7B0F',
                       fontFamily: '72',
                       margin: 0,
-                      color: '#556B82',
-                      fontWeight: '500'
+                      fontWeight: '600'
                     }}>
-                      {system.subtitle}
+                      Complete Business Application
                     </p>
                   </div>
                 </div>
 
-                {/* Status Badge */}
                 <div style={{
+                  background: 'rgba(15, 123, 15, 0.1)',
+                  color: '#0F7B0F',
                   display: 'inline-block',
-                  padding: '4px 12px',
-                  background: system.statusColor,
-                  color: 'white',
-                  borderRadius: 20,
-                  fontSize: 12,
-                  fontFamily: '72',
-                  fontWeight: '600'
-                }}>
-                  {system.status}
-                </div>
-              </div>
-
-              {/* Description */}
-              <p style={{
-                fontSize: 16,
-                fontFamily: '72',
-                lineHeight: '24px',
-                color: '#556B82',
-                margin: '0 0 24px 0'
-              }}>
-                {system.description}
-              </p>
-
-              {/* Features */}
-              <div style={{ marginBottom: 24 }}>
-                <h4 style={{
-                  fontSize: 14,
+                  padding: '6px 12px',
+                  borderRadius: '16px',
+                  fontSize: '12px',
                   fontWeight: '600',
                   fontFamily: '72',
-                  margin: '0 0 12px 0',
-                  color: '#1B2A3A',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.5px'
+                  marginBottom: '20px'
                 }}>
-                  Key Features
-                </h4>
-                <ul style={{
-                  margin: 0,
-                  padding: '0 0 0 16px',
-                  fontSize: 14,
-                  fontFamily: '72',
-                  color: '#556B82'
-                }}>
-                  {system.features.map((feature, index) => (
-                    <li key={index} style={{ marginBottom: 4 }}>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Action Button */}
-              {system.comingSoon ? (
-                <div style={{
-                  padding: '12px 24px',
-                  background: '#f5f5f5',
-                  color: '#999',
-                  borderRadius: 8,
-                  fontSize: 14,
-                  fontFamily: '72',
-                  fontWeight: '600',
-                  textAlign: 'center',
-                  border: '2px solid #e0e0e0'
-                }}>
-                  Coming Soon
+                  Live Demo
                 </div>
-              ) : (
-                <Link href={system.path} style={{ textDecoration: 'none' }}>
-                  <div style={{
-                    padding: '12px 24px',
-                    background: system.borderColor,
-                    color: 'white',
-                    borderRadius: 8,
-                    fontSize: 14,
-                    fontFamily: '72',
-                    fontWeight: '600',
-                    textAlign: 'center',
-                    transition: 'all 0.2s ease',
-                    cursor: 'pointer'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = system.statusColor;
-                    e.currentTarget.style.transform = 'scale(1.02)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = system.borderColor;
-                    e.currentTarget.style.transform = 'scale(1)';
-                  }}
+
+                <p style={{
+                  fontSize: '1rem',
+                  color: '#556B82',
+                  fontFamily: '72',
+                  margin: '0 0 32px 0',
+                  lineHeight: '1.6'
+                }}>
+                  See SAP prototyping in action with a complete business application featuring modern UX patterns, 
+                  AI assistant integration, and real workflow demonstrations.
+                </p>
+
+                                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                  marginTop: 'auto'
+                }}>
+                  <Link href="/suite-first" style={{ 
+                    textDecoration: 'underline',
+                    color: '#0F7B0F',
+                    fontSize: '16px',
+                    fontWeight: '400',
+                    fontFamily: '72'
+                  }}>
+                    Launch Prototype
+                  </Link>
+                  <a 
+                    href="https://github.com/djteknokid/design-pattern/tree/main/src/app/suite-first" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{ 
+                      textDecoration: 'underline',
+                      color: '#556B82',
+                      fontSize: '16px',
+                      fontWeight: '400',
+                      fontFamily: '72'
+                    }}
                   >
-                    Explore Design System →
+                    View Code
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Joule Library Card */}
+            <div style={{
+              background: 'white',
+              borderRadius: '20px',
+              padding: '40px',
+              boxShadow: '0 10px 40px rgba(93, 54, 255, 0.1)',
+              border: '1px solid rgba(93, 54, 255, 0.1)',
+              position: 'relative',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%'
+            }}>
+              {/* Background Accent */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                width: '100px',
+                height: '100px',
+                background: 'linear-gradient(135deg, #5D36FF, #8B5DFF)',
+                borderRadius: '0 20px 0 100px',
+                opacity: 0.1
+              }} />
+              
+              <div style={{ 
+                position: 'relative', 
+                zIndex: 1, 
+                display: 'flex', 
+                flexDirection: 'column', 
+                height: '100%' 
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  marginBottom: '24px'
+                }}>
+                  <div style={{
+                    fontSize: '2.5rem'
+                  }}>🤖</div>
+                  <div>
+                    <h3 style={{
+                      fontSize: '1.5rem',
+                      fontWeight: '700',
+                      fontFamily: '72',
+                      margin: '0 0 4px 0',
+                      color: '#1B2A3A'
+                    }}>
+                      Joule Design Library
+                    </h3>
+                    <p style={{
+                      fontSize: '1rem',
+                      color: '#5D36FF',
+                      fontFamily: '72',
+                      margin: 0,
+                      fontWeight: '600'
+                    }}>
+                      AI & Conversational UI Components
+                    </p>
                   </div>
-                </Link>
-              )}
+                </div>
+
+                <div style={{
+                  background: 'rgba(93, 54, 255, 0.1)',
+                  color: '#5D36FF',
+                  display: 'inline-block',
+                  padding: '6px 12px',
+                  borderRadius: '16px',
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  fontFamily: '72',
+                  marginBottom: '20px'
+                }}>
+                  25+ Components
+                </div>
+
+                <p style={{
+                  fontSize: '1rem',
+                  color: '#556B82',
+                  fontFamily: '72',
+                  margin: '0 0 32px 0',
+                  lineHeight: '1.6'
+                }}>
+                  Production-ready components for AI-powered SAP experiences. Copy-paste chat interfaces, 
+                  conversation patterns, and intelligent workflows—perfect for rapid AI prototype development.
+                </p>
+
+                                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                  marginTop: 'auto'
+                }}>
+                  <Link href="/joule-library" style={{ 
+                    textDecoration: 'underline',
+                    color: '#5D36FF',
+                    fontSize: '16px',
+                    fontWeight: '400',
+                    fontFamily: '72'
+                  }}>
+                    View Components
+                  </Link>
+                  <a 
+                    href="https://github.com/djteknokid/design-pattern/tree/main/src/app/components/Joule" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{ 
+                      textDecoration: 'underline',
+                      color: '#556B82',
+                      fontSize: '16px',
+                      fontWeight: '400',
+                      fontFamily: '72'
+                    }}
+                  >
+                    View Code
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* UI5 Library Card */}
+            <div style={{
+              background: 'white',
+              borderRadius: '20px',
+              padding: '40px',
+              boxShadow: '0 10px 40px rgba(255, 107, 53, 0.1)',
+              border: '1px solid rgba(255, 107, 53, 0.1)',
+              position: 'relative',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%'
+            }}>
+              {/* Background Accent */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                width: '100px',
+                height: '100px',
+                background: 'linear-gradient(135deg, #FF6B35, #FF8A65)',
+                borderRadius: '0 20px 0 100px',
+                opacity: 0.1
+              }} />
+              
+              <div style={{ 
+                position: 'relative', 
+                zIndex: 1, 
+                display: 'flex', 
+                flexDirection: 'column', 
+                height: '100%' 
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  marginBottom: '24px'
+                }}>
+                  <div style={{
+                    fontSize: '2.5rem'
+                  }}>🎨</div>
+                  <div>
+                    <h3 style={{
+                      fontSize: '1.5rem',
+                      fontWeight: '700',
+                      fontFamily: '72',
+                      margin: '0 0 4px 0',
+                      color: '#1B2A3A'
+                    }}>
+                      UI5 Design Library
+                    </h3>
+                    <p style={{
+                      fontSize: '1rem',
+                      color: '#FF6B35',
+                      fontFamily: '72',
+                      margin: 0,
+                      fontWeight: '600'
+                    }}>
+                      Enterprise Application Foundation
+                    </p>
+                  </div>
+                </div>
+
+                <div style={{
+                  background: 'rgba(255, 107, 53, 0.1)',
+                  color: '#FF6B35',
+                  display: 'inline-block',
+                  padding: '6px 12px',
+                  borderRadius: '16px',
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  fontFamily: '72',
+                  marginBottom: '20px'
+                }}>
+                  100+ Components
+                </div>
+
+                <p style={{
+                  fontSize: '1rem',
+                  color: '#556B82',
+                  fontFamily: '72',
+                  margin: '0 0 32px 0',
+                  lineHeight: '1.6'
+                }}>
+                  Enterprise-grade UI5 components ready for immediate use. Pre-configured with SAP design standards, 
+                  accessibility features, and responsive layouts—accelerate your enterprise prototype development.
+                </p>
+
+                                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                  marginTop: 'auto'
+                }}>
+                  <Link href="/ui5-design" style={{ 
+                    textDecoration: 'underline',
+                    color: '#FF6B35',
+                    fontSize: '16px',
+                    fontWeight: '400',
+                    fontFamily: '72'
+                  }}>
+                    View Components
+                  </Link>
+                  <a 
+                    href="https://github.com/djteknokid/design-pattern/tree/main/src/app/components/UI5" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{ 
+                      textDecoration: 'underline',
+                      color: '#556B82',
+                      fontSize: '16px',
+                      fontWeight: '400',
+                      fontFamily: '72'
+                    }}
+                  >
+                    View Code
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      </section>
 
-      {/* Footer */}
-      <div style={{
-        textAlign: 'center',
-        marginTop: 60,
-        color: 'white',
-        opacity: 0.8
-      }}>
-        <p style={{
-          fontSize: 14,
-          fontFamily: '72',
-          margin: 0
-        }}>
-          SAP Design Systems Collection • Built with Next.js and React
-        </p>
-      </div>
+
     </div>
   );
 };
