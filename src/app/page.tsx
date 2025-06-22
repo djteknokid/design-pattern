@@ -39,7 +39,7 @@ const Homepage: React.FC = () => {
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text'
           }}>
-            SAP Prototype Library
+            SAP AI Labs
           </h1>
           
           <p style={{
